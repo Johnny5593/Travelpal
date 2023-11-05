@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 namespace travelpal
@@ -10,16 +9,14 @@ namespace travelpal
         private List<User> Users = new List<User>();
         private List<Travel> Travels = new List<Travel>();
 
-        public bool RegisterUser(string username, string password)
+        public bool RegisterUser(User user)
         {
-            if (Users.Any(u => u.Username == username))
+            if (Users.Any(u => u.Username == user.Username))
             {
-                // User with the same username already exists
                 return false;
             }
 
-            User newUser = new User(username, password);
-            Users.Add(newUser);
+            Users.Add(user);
             return true;
         }
 
@@ -40,10 +37,22 @@ namespace travelpal
             return user;
         }
 
+        public List<Travel> GetTravels()
+        {
+            return Travels;
+        }
+
+
         public void AddTravel(Travel travel)
         {
             Console.WriteLine("Travel in TravelManager", travel);
             Travels.Add(travel);
+        }
+
+        public bool RemoveTravel(Travel travel)
+        {
+            bool removed = Travels.Remove(travel);
+            return removed;
         }
     }
 }

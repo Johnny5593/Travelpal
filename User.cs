@@ -1,9 +1,12 @@
-﻿namespace travelpal
+﻿using System.Collections.Generic;
+
+namespace travelpal
 {
     public class User
     {
         public string Username { get; set; }
         public string Password { get; set; }
+        public List<Travel> Travels { get; set; } = new List<Travel>();
 
         // Default constructor
         public User()
@@ -15,6 +18,12 @@
         {
             Username = username;
             Password = password;
+        }
+
+        // Metod för att lägga till en resa för användaren
+        public void AddTravel(Travel travel)
+        {
+            Travels.Add(travel);
         }
     }
 }

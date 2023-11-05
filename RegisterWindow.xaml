@@ -1,0 +1,39 @@
+﻿<Window x:Class="travelpal.RegisterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Register" Height="300" Width="400">
+    <Window.Resources>
+        <Style x:Key="PlaceholderTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Grid>
+                            <TextBox x:Name="PART_TextBox" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" />
+                            <TextBlock x:Name="PART_Placeholder" Text="{TemplateBinding Tag}" Foreground="Gray" Visibility="Collapsed"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger SourceName="PART_TextBox" Property="Text" Value="">
+                                <Setter TargetName="PART_Placeholder" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger SourceName="PART_TextBox" Property="Text" Value="{x:Null}">
+                                <Setter TargetName="PART_Placeholder" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger SourceName="PART_TextBox" Property="IsFocused" Value="True">
+                                <Setter TargetName="PART_Placeholder" Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Label Content="Registrera Ny Användare" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0"/>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBox x:Name="UsernameTextBox" Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Användarnamn" Width="200" Margin="0,10"/>
+            <PasswordBox x:Name="PasswordBox" Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Lösenord" Width="200" Margin="0,10"/>
+            <ComboBox x:Name="CountryComboBox" Tag="Välj Land" Width="200" Margin="0,10"/>
+            <Button Content="Register" Width="80" Height="30" Margin="0,10" Click="RegisterButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

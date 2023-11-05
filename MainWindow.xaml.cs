@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
 
 namespace travelpal
 {
@@ -11,6 +10,18 @@ namespace travelpal
         {
             InitializeComponent();
             travelManager = new TravelManager();
+
+            // Skapa standardanvändare och lägg till resor
+            User defaultUser = new User("user", "password");
+            User defaultAdmin = new User("admin", "password");
+            defaultUser.AddTravel(new Travel { City = "Stockholm", Country = "Sverige" });
+            defaultUser.AddTravel(new Travel { City = "Berlin", Country = "Tyskland" });
+            defaultAdmin.AddTravel(new Travel { City = "Agadir", Country = "Morroco" });
+            defaultAdmin.AddTravel(new Travel { City = "Köpenhamn", Country = "Danmark" });
+            travelManager.RegisterUser(defaultUser);
+            travelManager.RegisterUser(defaultAdmin);
+
+
         }
 
         private void SignInButton_Click(object sender, RoutedEventArgs e)
@@ -21,7 +32,8 @@ namespace travelpal
             User user = travelManager.ValidateUser(username, password);
             if (user != null)
             {
-                TravelsWindow travelsWindow = new TravelsWindow(user);
+                // Pass the existing travelManager instance to TravelsWindow
+                TravelsWindow travelsWindow = new TravelsWindow(user, travelManager);
                 travelsWindow.Show();
                 Close();
             }
@@ -30,6 +42,7 @@ namespace travelpal
                 ErrorMessage.Text = "Fel användarnamn eller lösenord. Försök igen.";
             }
         }
+
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
@@ -42,16 +55,20 @@ namespace travelpal
                 return;
             }
 
-            bool registrationSuccess = travelManager.RegisterUser(username, password);
+            User newUser = new User(username, password);
+            bool registrationSuccess = travelManager.RegisterUser(newUser);
+
             if (registrationSuccess)
             {
-                ErrorMessage.Text = "Användare registrerad framgångsrikt.";
+                SuccessMessage.Text = "Användare registrerad framgångsrikt.";
             }
             else
             {
                 ErrorMessage.Text = "Användarnamnet är redan taget. Välj ett annat användarnamn.";
             }
         }
+
+
         private void UsernameTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             if (UsernameTextBox.Text == "Användarnamn")
@@ -74,4 +91,3 @@ namespace travelpal
         }
     }
 }
-

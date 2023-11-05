@@ -1,0 +1,32 @@
+﻿<Window x:Class="travelpal.UserDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="User Details" Height="300" Width="400">
+    <Grid>
+        <Label Content="User Details" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0"/>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="132,10,0,0">
+            <TextBox x:Name="UsernameTextBox" Width="200" Margin="0,10" Foreground="Gray" Text="Nytt Användarnamn">
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Style.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Text" Value=""/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="False">
+                                <Setter Property="Foreground" Value="Gray"/>
+                                <Setter Property="Text" Value="Nytt Användarnamn"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <!-- Similarly style other TextBox controls here -->
+            <PasswordBox x:Name="NewPasswordBox" Width="200" Margin="0,10"/>
+            <PasswordBox x:Name="ConfirmPasswordBox" Width="200" Margin="0,10"/>
+            <ComboBox x:Name="CountryComboBox" Width="200" Margin="0,10" SelectionChanged="CountryComboBox_SelectionChanged"/>
+            <Button Content="Save" Width="80" Height="30" Margin="0,10" Click="SaveButton_Click"/>
+            <Button Content="Cancel" Width="80" Height="30" Margin="0,10" Click="CancelButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
