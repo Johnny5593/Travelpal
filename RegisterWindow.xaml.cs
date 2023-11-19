@@ -13,7 +13,7 @@ namespace travelpal
             travelManager = manager;
 
             // Fyll ComboBox med lista över länder (du behöver skapa denna lista själv)
-            List<string> countries = new List<string> { "Sverige", "Norge", "Danmark", "Finland", "Island" };
+            List<string> countries = new List<string> { "Italien", "Danmark", "Skottland", "Frankrike", "Sverige", "Spanien" };
             CountryComboBox.ItemsSource = countries;
         }
 
@@ -29,7 +29,7 @@ namespace travelpal
             }
             else
             {
-                // Skapa en ny användare och lägga till den i TravelManager
+                // Skapa en ny användare utan att lägga till default travels
                 User newUser = new User { Username = username, Password = password };
                 travelManager.AddUser(newUser);
 
@@ -39,4 +39,6 @@ namespace travelpal
             }
         }
     }
+
+
 }

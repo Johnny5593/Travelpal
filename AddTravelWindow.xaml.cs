@@ -72,8 +72,7 @@ namespace travelpal
                 // Add the new travel to the loggedInUser's travels
                 loggedInUser.AddTravel(newTravel);
 
-                
-                
+
 
                 // Pass the updated travels list to TravelsWindow
                 if (loggedInUser.Username == "user")
@@ -92,14 +91,14 @@ namespace travelpal
                 }
                 else if (loggedInUser.Username != "admin")
                 {
-                    var res = new TravelsWindow(loggedInUser, travelManager, travelManager.GetTravels());
+                    var res = new TravelsWindow(loggedInUser, travelManager, travelManager.GetTravels(loggedInUser.Username));
                     res.Show();
 
                     Close();
                 }
                 else if (loggedInUser.Username != "user")
                 {
-                    var res = new TravelsWindow(loggedInUser, travelManager, travelManager.GetTravels());
+                    var res = new TravelsWindow(loggedInUser, travelManager, travelManager.GetTravels(loggedInUser.Username));
                     res.Show();
 
                     Close();

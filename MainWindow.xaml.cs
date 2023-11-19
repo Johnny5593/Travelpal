@@ -60,16 +60,17 @@ namespace travelpal
                     }
                     else
                     {
-                        // Call GetTravelsUser for "user" or "admin"
-                        travels = travelManager.GetTravelsUser(username);
+                        // Call GetTravels for "user" or "admin"
+                        travels = travelManager.GetTravels(username);
                     }
                 }
                 else
                 {
                     // Call GetTravels for other users
-                    travels = new(travelManager.GetTravels());
+                    travels = new(travelManager.GetTravels(username));
                     travels.Clear();
                 }
+
 
                 // Pass the existing travelManager instance and the travels list to TravelsWindow
                 TravelsWindow travelsWindow = new TravelsWindow(user, travelManager, travels);

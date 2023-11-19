@@ -21,8 +21,7 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBox x:Name="CityTextBox" Width="200" Margin="0,10" Style="{StaticResource WatermarkTextBoxStyle}" Text="Enter City" GotFocus="CityTextBox_GotFocus" LostFocus="CityTextBox_LostFocus"/>
             <Grid Width="200" Height="30" Margin="0,10">
-                <ComboBox x:Name="CountryComboBox" Width="200" Height="30" IsEditable="True" Background="Transparent" BorderBrush="Transparent"/>
-                <TextBlock x:Name="CountryPlaceholder" Text="Country:" Foreground="Gray" VerticalAlignment="Center" Margin="5,0,0,0" Visibility="Visible"/>
+                <ComboBox x:Name="CountryComboBox" Text="Country:" Width="200" Height="30" IsEditable="True" Background="Transparent" BorderBrush="Transparent"/>
             </Grid>
             <TextBox x:Name="TravelersTextBox" Width="200" Margin="0,10" Style="{StaticResource WatermarkTextBoxStyle}" Text="Enter amount of travelers"/>
             <CheckBox x:Name="WorkTripCheckBox" Content="Work Trip" Margin="0,10" Checked="WorkTripCheckBox_Checked" Unchecked="WorkTripCheckBox_Unchecked"/>

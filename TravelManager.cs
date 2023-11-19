@@ -119,10 +119,15 @@ namespace travelpal
         }
 
 
-        public List<Travel> GetTravels()
+        public List<Travel> GetTravels(string username)
         {
-            return Travels;
+            // Find the user with the specified username
+            User user = Users.FirstOrDefault(u => u.Username == username);
+
+            // If user is found, return only their travels; otherwise, return an empty list
+            return user?.Travels ?? new List<Travel>();
         }
+
 
         public List<Travel> GetTravelsUser(string username)
         {
