@@ -7,21 +7,23 @@ namespace travelpal
     public partial class AddTravelWindow : Window
     {
         private TravelManager travelManager;
+        private User loggedInUser;
+        private TravelsWindow travelsWindow;
 
-        public AddTravelWindow(TravelManager manager)
+        public AddTravelWindow(TravelManager manager, User user)
         {
             InitializeComponent();
             travelManager = manager;
-
+            loggedInUser = user;
+            this.travelsWindow = travelsWindow;
 
             List<string> countries = new List<string>
             {
-                "Morroco", "Danmark", "Storbritannien", "Japan", "Jamaica", "Spanien"
+                "Italien", "Danmark", "Skottland", "Frankrike", "Sverige", "Spanien"
             };
 
             CountryComboBox.ItemsSource = countries;
         }
-
 
         private void CityTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -51,22 +53,57 @@ namespace travelpal
             MeetingDetailsTextBox.Visibility = Visibility.Collapsed;
         }
 
+        // In AddTravelWindow
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             // Validate input and save the travel details
-            // You need to add logic to create a new Travel object and save it to the TravelManager
             if (CountryComboBox.SelectedItem != null)
             {
                 Travel newTravel = new Travel
                 {
                     City = CityTextBox.Text,
-                    Country = CountryComboBox.SelectedItem.ToString()
-                    // You can add other properties like Travelers, IsWorkTrip, MeetingDetails, etc. here
+                    Country = CountryComboBox.SelectedItem.ToString(),
+                    Travelers = int.Parse(TravelersTextBox.Text),
+                    IsWorkTrip = WorkTripCheckBox.IsChecked.GetValueOrDefault(),
+                    AllInclusive = AllInclusiveCheckBox.IsChecked.GetValueOrDefault(),
+                    MeetingDetails = MeetingDetailsTextBox.Text,
                 };
 
-                // Add the new travel to the TravelManager
-                travelManager.AddTravel(newTravel);
-                Close();
+                // Add the new travel to the loggedInUser's travels
+                loggedInUser.AddTravel(newTravel);
+
+                
+                
+
+                // Pass the updated travels list to TravelsWindow
+                if (loggedInUser.Username == "user")
+                {
+                    var res = new TravelsWindow(loggedInUser, travelManager, travelManager.GetTravelsUser("user"));
+                    res.Show();
+
+                    Close();
+                }
+                else if (loggedInUser.Username == "admin")
+                {
+                    var res = new TravelsWindow(loggedInUser, travelManager, travelManager.GetTravelsUser("admin"));
+                    res.Show();
+
+                    Close();
+                }
+                else if (loggedInUser.Username != "admin")
+                {
+                    var res = new TravelsWindow(loggedInUser, travelManager, travelManager.GetTravels());
+                    res.Show();
+
+                    Close();
+                }
+                else if (loggedInUser.Username != "user")
+                {
+                    var res = new TravelsWindow(loggedInUser, travelManager, travelManager.GetTravels());
+                    res.Show();
+
+                    Close();
+                }
             }
             else
             {
@@ -74,11 +111,12 @@ namespace travelpal
             }
         }
 
-
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             // Close AddTravelWindow without saving travel details
             Close();
         }
+
+
     }
 }

@@ -9,7 +9,7 @@ namespace travelpal
         public int Travelers { get; set; }
         public bool IsWorkTrip { get; set; }
         public bool AllInclusive { get; set; }
-        public string? MeetingDetails { get; set; }
+        public string? MeetingDetails { get; set; } = string.Empty;
         public List<TravelDocument> Documents { get; set; } = new List<TravelDocument>();
     }
 }

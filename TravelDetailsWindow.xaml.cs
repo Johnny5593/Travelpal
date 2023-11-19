@@ -29,11 +29,11 @@ namespace travelpal
             CityTextBox.IsEnabled = true;
             CountryTextBox.IsEnabled = true;
             TravelersTextBox.IsEnabled = true;
-            //IsWorkTripCheckBox.IsEnabled = true;
-            //AllInclusiveCheckBox.IsEnabled = true;
-            //MeetingDetailsTextBox.IsEnabled = true;
-            //// Enable editing of the ListBox or any other control for documents if necessary
-            //DocumentsListBox.IsEnabled = true;
+            IsWorkTripCheckBox.IsEnabled = true;
+            AllInclusiveCheckBox.IsEnabled = true;
+            MeetingDetailsTextBox.IsEnabled = true;
+            // Enable editing of the ListBox or any other control for documents if necessary
+            DocumentsListBox.IsEnabled = true;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -47,11 +47,10 @@ namespace travelpal
                 selectedTravel.City = CityTextBox.Text;
                 selectedTravel.Country = CountryTextBox.Text;
                 selectedTravel.Travelers = travelers;
-                //selectedTravel.IsWorkTrip = IsWorkTripCheckBox.IsChecked.GetValueOrDefault();
-                //selectedTravel.AllInclusive = AllInclusiveCheckBox.IsChecked.GetValueOrDefault();
-                //selectedTravel.MeetingDetails = MeetingDetailsTextBox.Text;
+                selectedTravel.IsWorkTrip = IsWorkTripCheckBox.IsChecked.GetValueOrDefault();
+                selectedTravel.AllInclusive = AllInclusiveCheckBox.IsChecked.GetValueOrDefault();
+                selectedTravel.MeetingDetails = MeetingDetailsTextBox.Text;
 
-                // Close TravelDetailsWindow
                 Close();
             }
             else

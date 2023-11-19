@@ -15,6 +15,7 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
+
     <Grid>
         <Label Content="Add Travel" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0"/>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">

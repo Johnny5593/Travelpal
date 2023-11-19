@@ -4,7 +4,7 @@
         Title="Travels" Height="450" Width="600">
     <Grid>
         <Label Content="Resor" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0"/>
-        <TextBlock x:Name="UsernameLabel" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,70,0,0"/>
+        <TextBlock x:Name="UsernameLabel" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,70,0,0"/>
         <Button Content="User" Width="80" Height="30" Margin="0,10,20,0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="UserButton_Click"/>
         <Button Content="Add Travel" Width="100" Height="30" Margin="0,10,120,0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="AddTravelButton_Click"/>
         <ListView x:Name="TravelList" HorizontalAlignment="Left" VerticalAlignment="Top" Width="550" Height="250" Margin="20,120,0,0">
